@@ -3,6 +3,8 @@ package com.moneyapi.resource;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +31,7 @@ public class CategoryResource {
 	}
 
 	@PostMapping
-	public ResponseEntity<Category> crate(@RequestBody Category category) {
+	public ResponseEntity<Category> crate(@Valid @RequestBody Category category) {
 		Category categorySaved = categoryRepository.save(category);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
 				.buildAndExpand(categorySaved.getId()).toUri();
