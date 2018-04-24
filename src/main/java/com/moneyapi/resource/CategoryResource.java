@@ -31,7 +31,7 @@ public class CategoryResource {
 	}
 
 	@PostMapping
-	public ResponseEntity<Category> crate(@Valid @RequestBody Category category) {
+	public ResponseEntity<Category> create(@Valid @RequestBody Category category) {
 		Category categorySaved = categoryRepository.save(category);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
 				.buildAndExpand(categorySaved.getId()).toUri();
