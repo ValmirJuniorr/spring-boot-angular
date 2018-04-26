@@ -4,23 +4,24 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class Adress {
-	private String stret;
-	private String number;
+	private String street;
+	private int number;
 	private String complement;
-	private String neighborhood;	
+	private String neighborhood;
 	private String zipCode;
 	private String city;
-	private String estate;
-	public String getStret() {
-		return stret;
+	private String state;	
+	
+	public String getStreet() {
+		return street;
 	}
-	public void setStret(String stret) {
-		this.stret = stret;
+	public void setStreet(String street) {
+		this.street = street;
 	}
-	public String getNumber() {
+	public int getNumber() {
 		return number;
 	}
-	public void setNumber(String number) {
+	public void setNumber(int number) {
 		this.number = number;
 	}
 	public String getComplement() {
@@ -47,14 +48,12 @@ public class Adress {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	public String getEstate() {
-		return estate;
+	public String getState() {
+		return state;
 	}
-	public void setEstate(String estate) {
-		this.estate = estate;
+	public void setState(String state) {
+		this.state = state;
 	}
-	
-	
 	
 
 }

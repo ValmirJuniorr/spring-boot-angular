@@ -1,13 +1,12 @@
 package com.moneyapi.resource;
 
 import java.net.URI;
-import java.net.URL;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.CreatedBy;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,10 +30,11 @@ public class PersonResource {
 		return personRepository.findAll();
 	}
 	
-	public ResponseEntity<Person> create (@Valid @RequestBody Person person){
+	public ResponseEntity<Person> create (@Valid @RequestBody Person person, HttpServletResponse response){
 		Person personSaved = personRepository.save(person);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/id")
 				.buildAndExpand(personSaved.getId()).toUri();
+		response.setHeader("Location", uri.toASCIIString());
 		return ResponseEntity.created(uri).body(personSaved);
 		
 	}
